@@ -1,0 +1,11 @@
+com\biggirlo\core\model\BaseModel.class
+com\biggirlo\core\util\StringUtil.class
+com\biggirlo\core\service\BaseService.class
+com\biggirlo\core\http\DataTablesParam.class
+com\biggirlo\core\http\response\RestultDate.class
+com\biggirlo\core\util\Page.class
+com\biggirlo\core\http\response\Restult.class
+com\biggirlo\core\http\response\Code.class
+com\biggirlo\core\service\BaseServiceImpl.class
+com\biggirlo\core\util\ReflectionUtils.class
+com\biggirlo\core\util\Validate.class

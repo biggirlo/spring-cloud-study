@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: "https://github.com/biggirlo/spring-cloud-config"
+          search-paths: respo
+          #username: 111
+         # password: 1111
+      label: master
+
+server:
+  port: 8888
+
+eureka:
+  client:
+     serviceUrl:
+          defaultZone: http://117.48.214.169:10000/eureka/

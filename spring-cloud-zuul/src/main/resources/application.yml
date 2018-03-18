@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: service-zuul
+  redis:
+    host: 117.48.214.169
+    port: 6379
+    pool:
+      max-idle: 100
+      min-idle: 1
+      max-active: 1000
+      max-wait: -1
+
+
+server:
+  port: 8888
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://117.48.214.169:10000/eureka/
+    healthcheck:
+      enabled: true # 开启健康检验
+  instance:
+    lease-renewal-interval-in-seconds: 30 # 续约更新时间间隔（默认30秒）
+    lease-expiration-duration-in-seconds: 90 # 续约到期时间（默认90秒）
