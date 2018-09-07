@@ -1,0 +1,36 @@
+/target/
+/biggirloframework/target/
+/eureka_service/target/
+/redis/target/
+/service_config/target/
+/spring-cloud-zuul/target/
+/user-center/target/
+
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea/workspace.xml
+.idea
+*.iws
+*.iml
+*.ipr
+*.log
+/webH5/*.iml
+/webApp/webApp.iml
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
