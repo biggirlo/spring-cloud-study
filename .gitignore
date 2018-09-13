@@ -5,6 +5,7 @@
 /service_config/target/
 /spring-cloud-zuul/target/
 /user-center/target/
+/security/target/
 
 !.mvn/wrapper/maven-wrapper.jar
 

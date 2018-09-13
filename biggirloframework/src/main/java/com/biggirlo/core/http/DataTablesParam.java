@@ -9,60 +9,30 @@
  */
 package com.biggirlo.core.http;
 
+import lombok.Data;
+
+import java.util.List;
+
 /**
  * datatables 请求对象封装
  *  @author 王雁欣
  * create on 2017/9/21 22:16
  */
+@Data
 public class DataTablesParam {
 
+    //页码，从1开始
     private int start;
 
+    //一页长度
     private int length;
 
+    //总长度
     private Long recordsTotal;
 
     private Long recordsFiltered;
 
-    private Object data;
+    //数据
+    private List<Object> data;
 
-    public int getStart() {
-        return start;
-    }
-
-    public void setStart(int start) {
-        this.start = start;
-    }
-
-    public int getLength() {
-        return length;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
-    }
-
-    public Long getRecordsTotal() {
-        return recordsTotal;
-    }
-
-    public void setRecordsTotal(Long recordsTotal) {
-        this.recordsTotal = recordsTotal;
-    }
-
-    public Long getRecordsFiltered() {
-        return recordsFiltered;
-    }
-
-    public void setRecordsFiltered(Long recordsFiltered) {
-        this.recordsFiltered = recordsFiltered;
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
 }

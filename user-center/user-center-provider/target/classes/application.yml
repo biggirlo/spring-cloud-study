@@ -1,0 +1,38 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://117.48.214.169:10000/eureka/
+    healthcheck:
+      enabled: true # 开启健康检验
+  instance:
+    lease-renewal-interval-in-seconds: 30 # 续约更新时间间隔（默认30秒）
+    lease-expiration-duration-in-seconds: 90 # 续约到期时间（默认90秒）
+server:
+  port: 9001
+  tomcat:
+    uri-encoding: UTF-8
+    context-path: /
+spring:
+  application:
+    name: user-center
+  data:
+    mongodb:
+      uri: mongodb://117.48.214.169:27017/userCenter
+  http:
+      encoding:
+        charset: utf-8
+      multipart:
+        maxFileSize: 100Mb
+        maxRequestSize: 100Mb
+  aop:
+    auto: true
+    proxy-target-class: false
+
+    redis:
+        host: 117.48.214.169
+        port: 6379
+        pool:
+          max-idle: 100
+          min-idle: 1
+          max-active: 1000
+          max-wait: -1

@@ -8,12 +8,11 @@
 package com.biggirlo.cloud.zuul.controller;
 
 /**
- *
+ * 错误处理类
  * @author 王雁欣
  * create on 2018/3/18 4:06 
  */
-import com.biggirlo.core.http.response.Restult;
-import org.apache.commons.lang.StringUtils;
+import com.biggirlo.core.http.response.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.boot.autoconfigure.web.ErrorController;
@@ -47,12 +46,11 @@ public class ErrorHandlerController implements ErrorController {
      * @return
      */
     @RequestMapping("/error")
-    public Restult error(HttpServletRequest request, HttpServletResponse response) {
+    public Result error(HttpServletRequest request, HttpServletResponse response) {
         Map<String,Object> errorAttributes = getErrorAttributes(request, true);
         Integer status=(Integer)errorAttributes.get("status");
-        //String path=(String)errorAttributes.get("path");
         String messageFound=(String)errorAttributes.get("message");
-        return new Restult(status,messageFound);
+        return new Result(status,messageFound);
     }
 
     private Map<String, Object> getErrorAttributes(HttpServletRequest request, boolean includeStackTrace) {

@@ -61,13 +61,13 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
+				<!--<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
 					<verbose>true</verbose>
 					<fork>true</fork>
 					<executable>${JAVA8_HOME}/bin/javac</executable>
-				</configuration>
+				</configuration>-->
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

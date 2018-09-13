@@ -1,0 +1,10 @@
+com\biggirlo\demo\api\security\controller\AbstractErrorController.class
+com\biggirlo\demo\api\security\entiry\CustomUser.class
+com\biggirlo\demo\api\model\group\Group.class
+com\biggirlo\demo\api\security\authority\GrantedAuthorityImpl.class
+com\biggirlo\demo\api\security\config\SecurityConfig.class
+com\biggirlo\demo\api\model\user\User.class
+com\biggirlo\demo\api\model\role\Role.class
+com\biggirlo\demo\api\service\UserApiService.class
+com\biggirlo\demo\api\Service.class
+com\biggirlo\demo\api\security\entiry\CustomUserDetails.class

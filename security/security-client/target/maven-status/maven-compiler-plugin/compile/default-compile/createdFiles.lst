@@ -1,0 +1,11 @@
+com\biggirlo\security\client\handler\RestAuthenticationAccessDeniedHandler.class
+com\biggirlo\security\client\controller\AbstractErrorController.class
+com\biggirlo\security\client\config\SecurityCode.class
+com\biggirlo\security\client\authority\GrantedAuthorityImpl.class
+com\biggirlo\security\client\service\SecurityUserService.class
+com\biggirlo\security\client\config\SecurityConfig.class
+com\biggirlo\security\client\config\BiggirloWebSecurityConfig.class
+com\biggirlo\security\client\controller\ZuulErrorController.class
+com\biggirlo\security\client\filter\TokenAuthenticationFilter.class
+com\biggirlo\security\client\provider\CustomAuthenticationProvider.class
+com\biggirlo\security\client\service\SecurityUserServiceImpl.class

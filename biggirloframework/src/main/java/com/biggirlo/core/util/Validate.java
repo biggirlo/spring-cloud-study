@@ -14,10 +14,4 @@ package com.biggirlo.core.util;
  */
 public class Validate {
 
-    public static boolean isBlankStr(String str){
-        if(str == null || str.trim().equals(""))
-            return true;
-        else
-            return false;
-    }
 }

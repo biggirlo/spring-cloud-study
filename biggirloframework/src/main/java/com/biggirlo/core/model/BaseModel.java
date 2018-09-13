@@ -7,6 +7,7 @@
  */
 package com.biggirlo.core.model;
 
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 
 /**
@@ -14,7 +15,8 @@ import org.springframework.data.annotation.Id;
  * @author 王雁欣
  * create on 2018/3/13 0:56 
  */
-public class BaseModel {
+@Data
+public abstract class BaseModel {
 
     @Id
     private String id;
@@ -28,46 +30,13 @@ public class BaseModel {
     //更新时间
     private Long updateTime;
 
-    //创建人 设计为用户编码
+    //更新人 设计为用户编码
     private String updateBy;
 
-    public String getId() {
-        return id;
-    }
+    /**
+     * 初始化
+     * @return
+     */
+    public abstract BaseModel init();
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getCreateBy() {
-        return createBy;
-    }
-
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
-    }
-
-    public Long getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Long createTime) {
-        this.createTime = createTime;
-    }
-
-    public Long getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Long updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public String getUpdateBy() {
-        return updateBy;
-    }
-
-    public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy;
-    }
 }

@@ -7,6 +7,7 @@
  */
 package com.biggirlo.core.service;
 
+import com.biggirlo.core.model.BaseModel;
 import com.biggirlo.core.util.Page;
 import com.biggirlo.core.util.ReflectionUtils;
 import com.mongodb.WriteResult;
@@ -16,6 +17,8 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+import org.apache.commons.lang.ArrayUtils;
+
 
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
@@ -26,7 +29,7 @@ import java.util.List;
  * @author 王雁欣
  * create on 2018/3/13 0:56 
  */
-public class BaseServiceImpl<T> implements BaseService<T> {
+public class BaseServiceImpl<T extends BaseModel> implements BaseService<T> {
 
     /**
      * spring mongodb　集成操作类
@@ -35,6 +38,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
     protected MongoTemplate mongoTemplate;
 
     public T save(T entity) {
+        entity.setCreateTime(System.currentTimeMillis());
         mongoTemplate.insert(entity);
         return entity;
     }
@@ -85,6 +89,7 @@ public class BaseServiceImpl<T> implements BaseService<T> {
         if (update == null) {
             return null;
         }
+        update.pull("updateTime",System.currentTimeMillis());
         return mongoTemplate.updateMulti(query, update, this.getEntityClass());
     }
 
@@ -92,28 +97,39 @@ public class BaseServiceImpl<T> implements BaseService<T> {
         if (update == null) {
             return null;
         }
+        update.pull("updateTime",System.currentTimeMillis());
         return mongoTemplate.findAndModify(query, update, this.getEntityClass());
     }
 
-    public WriteResult update(T entity) {
-        Field[] fields = this.getEntityClass().getDeclaredFields();
+    /**
+     * 根据传入实体ID更新
+     *
+     * @param entity
+     * @return
+     */
+    public WriteResult updateById(T entity) {
+
+        Field[] fields = getAllFile();
+
+
         if (fields == null || fields.length <= 0) {
             return null;
         }
         Field idField = null;
-        // 查找ID的field
+        // 获取含有@Id 的注解列
         for (Field field : fields) {
             if (field.getName() != null
-                    && field.getAnnotation(Id.class) != null ) {
+                    && field.getAnnotation(Id.class) != null) {
                 idField = field;
                 break;
             }
         }
+        //如果找不到 抛异常
         if (idField == null) {
-            return null;
+            throw new RuntimeException("can't find annotation id");
         }
         idField.setAccessible(true);
-        String id = null;
+        String id=null;
         try {
             id = (String) idField.get(entity);
         } catch (IllegalArgumentException e) {
@@ -121,16 +137,30 @@ public class BaseServiceImpl<T> implements BaseService<T> {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-        if (id == null || "".equals(id.trim()))
+        if (id == null || "".equals(id.trim())){
             return null;
+        }
+        //设置当前时间
+        entity.setUpdateTime(System.currentTimeMillis());
         // 根据ID更新
-        Query query = new Query(Criteria.where("_id").is(id));
-
+        ObjectId objectId = new ObjectId(id);
+        Query query = new Query(Criteria.where("_id").is(objectId));
         Update update = ReflectionUtils.getUpdateObj(entity);
         if (update == null) {
             return null;
         }
         return mongoTemplate.updateFirst(query, update, getEntityClass());
+    }
+
+    private Field[] getAllFile() {
+        Class clazz = this.getEntityClass();
+        Field[] fields = clazz.getDeclaredFields();
+        while (clazz.getSuperclass() != null){
+            fields = (Field[]) ArrayUtils.addAll(fields,clazz.getSuperclass().getDeclaredFields());
+            clazz = clazz.getSuperclass();
+        }
+
+        return fields;
     }
 
     public void remove(Query query) {

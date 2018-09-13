@@ -1,5 +1,6 @@
 package com.biggirlo.core.service;
 
+import com.biggirlo.core.model.BaseModel;
 import com.biggirlo.core.util.Page;
 import com.mongodb.WriteResult;
 import org.springframework.data.mongodb.core.query.Query;
@@ -16,7 +17,7 @@ import java.util.List;
  * @author 王雁欣
  * create on 2018/3/13 0:55
  */
-public interface BaseService<T> {
+public interface BaseService<T extends BaseModel> {
 
 
     public T save(T entity) ;
@@ -24,6 +25,8 @@ public interface BaseService<T> {
     public T findById(String id);
 
     public T findById(String id, String collectionName);
+
+    public WriteResult updateById(T entity);
 
     public List<T> findAll();
 
@@ -40,8 +43,6 @@ public interface BaseService<T> {
     public WriteResult update(Query query, Update update);
 
     public T updateOne(Query query, Update update);
-
-    public WriteResult update(T entity) ;
 
     public void remove(Query query) ;
 }

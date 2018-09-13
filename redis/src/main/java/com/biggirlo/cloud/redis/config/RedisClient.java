@@ -19,14 +19,24 @@ import org.springframework.stereotype.Component;
 @Component
 public class RedisClient {
 
+    private final static Long EXTION_TIME = 3000L;
+
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
-    public void insertString(String key , String value) {
-        stringRedisTemplate.opsForValue().set("stringKey", "stringValue");
+    public void set(String key , String value) {
+        set(key, value,EXTION_TIME);
+    }
+
+    public void set(String key , String value,Long extionTime) {
+        stringRedisTemplate.opsForValue().set(key, value,extionTime);
     }
 
     public String get(String key){
         return  stringRedisTemplate.opsForValue().get(key);
+    }
+
+    public void delete(String key){
+        stringRedisTemplate.delete(key);
     }
 }

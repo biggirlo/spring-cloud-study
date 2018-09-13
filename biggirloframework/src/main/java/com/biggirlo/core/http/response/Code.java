@@ -1,5 +1,7 @@
 package com.biggirlo.core.http.response;
 
+import lombok.Data;
+
 /**
  * **********************************************************
  * 该项目仅用于学习
@@ -10,7 +12,7 @@ package com.biggirlo.core.http.response;
  * @author 王雁欣
  * create on 2017/9/19 23:42
  */
-public enum Code {
+public enum Code implements AbstractCode{
     SUCCESS(10000, "成功"),
     UN_LOGIN(10002, "未登陆"),
     SYSTEM_ERROR(10001, "系统错误"),
@@ -33,6 +35,7 @@ public enum Code {
      *
      * @return
      */
+    @Override
     public long value() {
         return this.code;
     }
@@ -42,6 +45,7 @@ public enum Code {
      *
      * @return
      */
+    @Override
     public String msg() {
         return this.msg;
     }
