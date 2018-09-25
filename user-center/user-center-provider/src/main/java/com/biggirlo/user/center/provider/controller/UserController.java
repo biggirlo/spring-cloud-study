@@ -17,6 +17,8 @@ import com.biggirlo.security.client.service.SecurityUserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -35,7 +37,7 @@ public class UserController implements UserApiService {
     private SecurityUserService securityUserService;
 
     @Override
-    public Result login(User user) {
+    public Result login(@RequestBody User user) {
         if(StringUtils.isBlank(user.getUserName()) && StringUtils.isBlank(user.getPassword())){
             return Result.code(Code.LOGIN_ERROR_UN_EXIST_NAME_PASSWORD);
         }

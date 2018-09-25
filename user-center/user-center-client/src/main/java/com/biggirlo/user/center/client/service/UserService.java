@@ -9,6 +9,7 @@ package com.biggirlo.user.center.client.service;
 
 import com.biggirlo.core.http.response.Code;
 import com.biggirlo.core.http.response.Result;
+import com.biggirlo.security.api.entiry.CustomUser;
 import com.biggirlo.user.center.api.Service;
 import com.biggirlo.user.center.api.model.user.User;
 import com.biggirlo.user.center.api.service.UserApiService;
@@ -53,6 +54,17 @@ public interface UserService extends UserApiService {
         @Override
         public String getCurrentUserId() {
             log.info("获取不到当前用户id");
+            return null;
+        }
+
+        /**
+         * 获取缓存数据
+         *
+         * @return
+         */
+        @Override
+        public CustomUser getCustomUser() {
+            log.info("获取失败");
             return null;
         }
     }
